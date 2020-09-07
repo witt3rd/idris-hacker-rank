@@ -3,8 +3,8 @@ import Data.Vect
 %default total
 
 fromListOfLength : (n : Nat) -> (xs : List a) -> Maybe (Vect n a)
-fromListOfLength n xs with (decEq (length xs) n)
-  fromListOfLength n xs | (Yes prf) = rewrite (sym prf) in Just (fromList xs)
+fromListOfLength n xs with (decEq n (length xs))
+  fromListOfLength n xs | (Yes prf) = Just (rewrite prf in fromList xs)
   fromListOfLength n xs | (No _) = Nothing
 
 arraySum : (cnt : String) -> (arr : String) -> String
